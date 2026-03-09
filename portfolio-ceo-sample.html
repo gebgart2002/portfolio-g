@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио - CEO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #0a0a0f 0%, #001122 25%, #002244 50%, #000033 75%, #0a0a0f 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 65, 0.15) 0%, rgba(255, 0, 255, 0.1) 30%, transparent 70%);
+            pointer-events: none;
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .hero-content {
+            max-width: 700px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hero-image-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 40px;
+            width: 208px;
+            height: 208px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00ff41, #ff00ff, #00ffff, #ffff00);
+            background-size: 300% 300%;
+            padding: 4px;
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.6), 0 0 80px rgba(255, 0, 255, 0.4), 0 0 120px rgba(0, 255, 255, 0.3);
+            animation: fadeInScale 1s ease-out 0.2s both, gradientShift 5s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hero-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            display: block;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .hero-image-container:hover .hero-image {
+            transform: scale(1.05);
+            filter: grayscale(80%);
+        }
+
+        .hero-image-container::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00ff41, #ff00ff, #00ffff);
+            opacity: 0.4;
+            filter: blur(20px);
+            z-index: -1;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.4;
+            }
+            50% {
+                transform: scale(1.15);
+                opacity: 0.7;
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #00ff41 0%, #ff00ff 33%, #00ffff 66%, #ffff00 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            letter-spacing: -1px;
+            animation: fadeInUp 1s ease-out 0.4s both, textGradientShift 4s ease infinite;
+            text-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+        }
+
+        @keyframes textGradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hero .title {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            color: #00ff41;
+            margin-bottom: 25px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: #b8b8b8;
+            margin-bottom: 35px;
+            line-height: 1.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #00ff41, #ff00ff, #00ffff);
+            background-size: 200% 200%;
+            color: #000;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 20px rgba(0, 255, 65, 0.5), 0 0 40px rgba(255, 0, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out 1s both, buttonGradientShift 3s ease infinite;
+        }
+
+        @keyframes buttonGradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 255, 65, 0.8), 0 0 60px rgba(255, 0, 255, 0.6), 0 0 80px rgba(0, 255, 255, 0.4);
+            background-position: 100% 50%;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            animation: fadeInUp 1s ease-out 1.2s both;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #00ff41, #ff00ff, #00ffff, transparent);
+            background-size: 200% 100%;
+            animation: lineGradientShift 3s ease infinite;
+        }
+
+        @keyframes lineGradientShift {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 200% 0%;
+            }
+        }
+
+        .about h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 50px;
+            text-align: center;
+            background: linear-gradient(135deg, #00ff41, #ff00ff, #00ffff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            animation: textGradientShift 4s ease infinite;
+        }
+
+        .about p {
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            color: #d0d0d0;
+            margin-bottom: 25px;
+            line-height: 2;
+            text-align: justify;
+            animation: slideInLeft 0.8s ease-out both;
+        }
+
+        .about p:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .about p:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .about p:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        /* Contacts Section */
+        .contacts {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, rgba(0, 17, 34, 0.8), rgba(0, 34, 68, 0.8));
+            text-align: center;
+            position: relative;
+            animation: fadeInUp 1s ease-out 1.4s both;
+        }
+
+        .contacts::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(0, 255, 65, 0.15) 0%, rgba(255, 0, 255, 0.1) 30%, transparent 50%);
+            pointer-events: none;
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+
+        .contacts h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #00ff41, #ff00ff, #00ffff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            animation: textGradientShift 4s ease infinite;
+        }
+
+        .contact-item {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInScale 0.8s ease-out both;
+        }
+
+        .contact-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .contact-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .contact-item p {
+            font-size: 1.1rem;
+            color: #b8b8b8;
+            margin-bottom: 20px;
+        }
+
+        .contact-item p a {
+            color: #00ff41;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+        }
+
+        .contact-item p a:hover {
+            color: #00ffff;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+            text-decoration: underline;
+            transform: scale(1.05);
+        }
+
+        .contact-item a {
+            display: inline-block;
+            padding: 14px 30px;
+            margin: 8px;
+            background: rgba(0, 255, 65, 0.1);
+            color: #00ff41;
+            text-decoration: none;
+            border-radius: 12px;
+            border: 2px solid rgba(0, 255, 65, 0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 1rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-item a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .contact-item a:hover::before {
+            left: 100%;
+        }
+
+        .contact-item a:hover {
+            background: linear-gradient(135deg, #00ff41, #ff00ff, #00ffff);
+            background-size: 200% 200%;
+            color: #000;
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 8px 30px rgba(0, 255, 65, 0.6), 0 0 40px rgba(255, 0, 255, 0.4), 0 0 60px rgba(0, 255, 255, 0.3);
+            border-color: transparent;
+            animation: linkGradientShift 2s ease infinite;
+        }
+
+        @keyframes linkGradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            animation: fadeInScale 0.8s ease-out both;
+        }
+
+        .social-links a:nth-child(1) {
+            animation-delay: 0.3s;
+        }
+
+        .social-links a:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .social-links a:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-image-container {
+                width: 158px;
+                height: 158px;
+            }
+
+            .hero-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .about, .contacts {
+                padding: 60px 20px;
+            }
+
+            .about p {
+                text-align: left;
+            }
+
+            .contact-item a {
+                display: block;
+                margin: 12px auto;
+                max-width: 250px;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .social-links a {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 30px 15px;
+            }
+
+            .hero-image-container {
+                width: 128px;
+                height: 128px;
+            }
+
+            .hero-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .about, .contacts {
+                padding: 50px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-image-container">
+                <!-- Профессиональное фото CEO. Для замены на своё фото: сохраните изображение в папку проекта и укажите путь, например: src="profile.jpg" -->
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=faces&auto=format&q=80" alt="CEO Portrait" class="hero-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\'%3E%3Cdefs%3E%3ClinearGradient id=\'grad\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%23a855f7;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%23ec4899;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx=\'100\' cy=\'100\' r=\'100\' fill=\'url(%23grad)\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' font-size=\'60\' fill=\'white\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'Arial\'%3ECEO%3C/text%3E%3C/svg%3E'">
+            </div>
+            <h1>Александр Волков</h1>
+            <p class="title">Chief Executive Officer</p>
+            <p>Стратегический лидер с более чем 15-летним опытом управления технологическими компаниями. Специализируюсь на трансформации бизнеса, масштабировании операций и построении высокопроизводительных команд.</p>
+            <a href="#contacts" class="cta-button">Свяжитесь со мной</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <h2>О себе</h2>
+        <p>
+            За свою карьеру я руководил несколькими технологическими компаниями, превращая их из стартапов в лидеров рынка. Мой подход к лидерству основан на стратегическом видении, глубоком понимании рынка и способности принимать решения в условиях неопределенности. Я верю в создание культуры инноваций, где каждый член команды может вносить значимый вклад в общий успех.
+        </p>
+        <p>
+            Моя философия управления строится на принципах прозрачности, ответственности и постоянного развития. Я фокусируюсь на построении долгосрочных отношений с клиентами, партнерами и инвесторами, понимая, что устойчивый рост возможен только через взаимное доверие и создание ценности для всех заинтересованных сторон. Каждое решение принимается с учетом долгосрочной перспективы и устойчивого развития бизнеса.
+        </p>
+        <p>
+            Помимо операционного управления, я активно участвую в развитии технологической экосистемы, выступая на конференциях и делясь опытом с начинающими предпринимателями. Я убежден, что успех в бизнесе измеряется не только финансовыми показателями, но и позитивным влиянием, которое компания оказывает на общество и отрасль в целом.
+        </p>
+    </section>
+
+    <!-- Contacts Section -->
+    <section class="contacts" id="contacts">
+        <h2>Контакты</h2>
+        <div class="contact-item">
+            <p>📧 <a href="/cdn-cgi/l/email-protection#88e9e4edf0e9e6ecedfaa6fee7e4e3e7fec8edf0e9e5f8e4eda6ebe7e5"><span class="__cf_email__" data-cfemail="ceafa2abb6afa0aaabbce0b8a1a2a5a1b88eabb6afa3bea2abe0ada1a3">[email&#160;protected]</span></a></p>
+        </div>
+        <div class="contact-item">
+            <div class="social-links">
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+                <a href="https://github.com" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </section>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
